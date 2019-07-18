@@ -1,6 +1,6 @@
 {
     "name": "deng-tp5/qr-code",
-    "description": "二维码",
+    "description": "二维码qr-code",
     "keywords": ["deng", "qrcode", "qr", "code", "php"],
     "type": "library",
     "license": "MIT",
@@ -10,14 +10,15 @@
             "email": "1415551519@qq.com"
         }
     ],
-    "minimum-stability": "stable",
-    "require": {
-        "php": ">=7.2",
-        "endroid/qr-code": "^3.6"
-    },
     "autoload": {
         "psr-4": {
           "DengTp5\\": "src"
         }
     },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.2",
+        "endroid/qr-code": "^3.6"
+    }
+    
 }
