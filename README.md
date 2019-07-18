@@ -21,7 +21,7 @@ for validating generated QR codes. Further extended with Twig extensions, genera
 Symfony bundle for easy installation and configuration.
 
 ````php
-composer require endroid/qr-code
+composer require deng-tp5/qr-code
 ````
 ## common.php
 
