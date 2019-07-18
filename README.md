@@ -1,5 +1,3 @@
-# php-composer-tp5-qrcode
-php-composer-tp5-qrcode
 -----------------
 # QR Code
 
@@ -17,10 +15,10 @@ for validating generated QR codes. Further extended with Twig extensions, genera
 Symfony bundle for easy installation and configuration.
 
 ````php
-    composer require endroid/qr-code
+composer require endroid/qr-code
 ````
 
-## 基础用法
+## Deng基础用法
 ````php
 use Endroid\QrCode\QrCode;
 
@@ -28,9 +26,10 @@ $qrCode = new QrCode('Life is too short to be generating QR codes');
 
 header('Content-Type: '.$qrCode->getContentType());
 echo $qrCode->writeString();
+exit;
 ````
 
-## 高级用法
+## Deng高级用法
 
 ````php
 use Endroid\QrCode\ErrorCorrectionLevel;
