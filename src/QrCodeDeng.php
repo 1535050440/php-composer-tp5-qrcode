@@ -16,39 +16,63 @@ use Endroid\QrCode\Response\QrCodeResponse;
 class QrCodeDeng
 {
     /**
-     *
+     *  基础用法
      * @param $text
      * @param $a
      * @return QrCodeResponse
      * @throws \Endroid\QrCode\Exception\InvalidPathException
      * @author:  deng    (2019/7/18 18:07)
      */
-    public static function createQrcode($text,$a = '')
+    public static function createQrcodeBase($text = 'demo')
     {
-        $root_path = \think\facade\Env::get('root_path');
-        $date = date('Ym');
-        $dir = $root_path.'/./public/qrcode/'.$date;
-        $file_name = $dir.'/'.date('d').'-'.time().'-'.rand(1000,9999).'.png';
+        $qrCode = new QrCode($text);
+
+        header('Content-Type: ' . $qrCode->getContentType());
+        echo $qrCode->writeString();
+        exit;
+    }
+
+    /**
+     * 高级用法
+     * @return QrCodeResponse
+     * @throws \Endroid\QrCode\Exception\InvalidPathException
+     * @author:  deng    (2019/7/18 21:37)
+     */
+    public static function createQrcodeAdvanced($conndition = [], $is_save = false)
+    {
+        //  定义当前框架所在目录
+        $rootPath = \think\facade\Env::get('root_path');
+
+        //  引入logo图片
+        $logoImg = $rootPath.'/./vendor/endroid/qr-code/assets/images/symfonyx.png';
+
+        $text = !empty($conndition['text'])?$conndition['text']:'myphp.vip';
+        $logoImg = !empty($conndition['logo_img'])?$conndition['logo_img']:$logoImg;
+        $bottomText = !empty($conndition['bottom_text'])?$conndition['bottom_text']:'二维码底部';
+
+        $dir = $rootPath.'/./public/qrcode/'. date('Ym');
 
         // 如果文件夹不存在，将以递归方式创建该文件夹
         is_dir($dir) OR mkdir($dir, 0777, true);
 
-        $path = $root_path.'/./vendor/endroid/qr-code/assets/fonts/noto_sans.otf';
-        $img = $root_path.'/./vendor/endroid/qr-code/assets/images/symfonyx.png';
+        $fileName = $dir.'/'.date('d').'-'.time().'-'.rand(1000,9999).'.png';
+
+        //  引入字体文件
+        $font = $rootPath.'/./vendor/endroid/qr-code/assets/fonts/noto_sans.otf';
 
         // Create a basic QR code
-        $qrCode = new \Endroid\QrCode\QrCode('Life is too short to be generating QR codes');
+        $qrCode = new \Endroid\QrCode\QrCode($text);
         $qrCode->setSize(300);
 
         // Set advanced options
         $qrCode->setWriterByName('png');
-        $qrCode->setMargin(10);
+        $qrCode->setMargin(12);
         $qrCode->setEncoding('UTF-8');
         $qrCode->setErrorCorrectionLevel(new \Endroid\QrCode\ErrorCorrectionLevel(\Endroid\QrCode\ErrorCorrectionLevel::HIGH));
-        $qrCode->setForegroundColor(['r' => 0, 'g' => 140, 'b' => 0, 'a' => 0]);
-        $qrCode->setBackgroundColor(['r' => 255, 'g' => 255, 'b' => 255, 'a' => 0]);
-        $qrCode->setLabel('二维码底部', 16, $path, \Endroid\QrCode\LabelAlignment::CENTER);
-        $qrCode->setLogoPath($img);
+        $qrCode->setForegroundColor(['r' => 0, 'g' => 0, 'b' => 0, 'a' => 0]);
+        $qrCode->setBackgroundColor(['r' => 255, 'g' => 255, 'b' => 255, 'a' => 255]);
+        $qrCode->setLabel($bottomText, 16, $font, \Endroid\QrCode\LabelAlignment::CENTER);
+        $qrCode->setLogoPath($logoImg);
         $qrCode->setLogoSize(120, 120);
         $qrCode->setRoundBlockSize(true);
         $qrCode->setValidateResult(false);
@@ -56,15 +80,20 @@ class QrCodeDeng
 
         // Directly output the QR code
         header('Content-Type: '.$qrCode->getContentType());
-        echo $qrCode->writeString();
-        exit;
-        // Save it to a file
-        $qrCode->writeFile($file_name);
 
-        // Create a response object
-        $response = new \Endroid\QrCode\Response\QrCodeResponse($qrCode);
+        $writeString = $qrCode->writeString();
 
-        return $response;
+        if ($is_save) {
+            // Save it to a file
+            $qrCode->writeFile($fileName);
+
+            // Create a response object
+            $response = new \Endroid\QrCode\Response\QrCodeResponse($qrCode);
+        }
+
+        echo $writeString;exit;
     }
+
+
 
 }
