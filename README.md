@@ -65,7 +65,7 @@ $qrCode->writeFile(__DIR__.'/qrcode.png');
 // Create a response object
 $response = new QrCodeResponse($qrCode);
 ````
-
+![QR Code](https://guangjiaoge.com/uploads/20190718/be3a8e56518b95964a6ad179c6acae37.png)
 
 ===============================================
 
