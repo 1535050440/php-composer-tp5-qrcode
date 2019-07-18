@@ -18,7 +18,7 @@ Symfony bundle for easy installation and configuration.
 composer require endroid/qr-code
 ````
 
-## Deng基础用法
+## Deng-qr-code基础用法
 ````php
 use Endroid\QrCode\QrCode;
 
@@ -29,7 +29,7 @@ echo $qrCode->writeString();
 exit;
 ````
 
-## Deng高级用法
+## Deng-qr-code高级用法
 
 ````php
 use Endroid\QrCode\ErrorCorrectionLevel;
@@ -58,7 +58,7 @@ $qrCode->setWriterOptions(['exclude_xml_declaration' => true]);
 // Directly output the QR code
 header('Content-Type: '.$qrCode->getContentType());
 echo $qrCode->writeString();
-
+exit;
 // Save it to a file
 $qrCode->writeFile(__DIR__.'/qrcode.png');
 
@@ -67,7 +67,7 @@ $response = new QrCodeResponse($qrCode);
 ````
 
 
-
+===============================================
 
 ## Installation
 
