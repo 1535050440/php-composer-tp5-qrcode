@@ -44,7 +44,7 @@ class QrCodeDeng
         $rootPath = \think\facade\Env::get('root_path');
 
         //  引入logo图片
-        $logoImg = $rootPath.'/./vendor/endroid/qr-code/assets/images/symfonyx.png';
+        $logoImg = $rootPath.'/./vendor/deng-tp5/qr-code/assets/images/logo.png';
 
         $text = !empty($conndition['text'])?$conndition['text']:'myphp.vip';
         $logoImg = !empty($conndition['logo_img'])?$conndition['logo_img']:$logoImg;
