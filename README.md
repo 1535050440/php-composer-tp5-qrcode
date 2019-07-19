@@ -42,7 +42,6 @@ create_qrcode($url);        //  引用commmon里的方法
  */
 function create_qrcode($url)
 {
-    $url = "http://myphp.vip";
     $condition['text'] = $url;
     return QrCodeDeng::createQrcodeAdvanced($condition);
 }
