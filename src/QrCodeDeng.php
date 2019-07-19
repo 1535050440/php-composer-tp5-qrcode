@@ -43,12 +43,28 @@ class QrCodeDeng
         //  定义当前框架所在目录
         $rootPath = \think\facade\Env::get('root_path');
 
+        //  引入字体文件
+        $font = $rootPath.'/./vendor/deng-tp5/qr-code/assets/fonts/noto_sans.otf';
         //  引入logo图片
         $logoImg = $rootPath.'/./vendor/deng-tp5/qr-code/assets/images/logo.png';
 
         $text = !empty($conndition['text'])?$conndition['text']:'myphp.vip';
         $logoImg = !empty($conndition['logo_img'])?$conndition['logo_img']:$logoImg;
         $bottomText = !empty($conndition['bottom_text'])?$conndition['bottom_text']:'二维码底部';
+        $size = !empty($conndition['size'])?$conndition['size']:'300';
+        $margin = !empty($conndition['margin'])?$conndition['margin']:'12';
+
+        //  是否传递二维码
+        $foregroundColor = !empty($conndition['foreground_color'])?$conndition['foreground_color']:'0,0,0';
+        $foregroundColorArray = explode(',',$foregroundColorArray);
+
+        //  是否传递二维码背景颜色
+        $backgroundColor = !empty($conndition['background_color'])?$conndition['background_color']:'255,255,255';
+        $backgroundColorArray = explode(',',$backgroundColor);
+
+
+
+        //  -------------构建参数end
 
         $dir = $rootPath.'/./public/qrcode/'. date('Ym');
 
@@ -57,20 +73,22 @@ class QrCodeDeng
 
         $fileName = $dir.'/'.date('d').'-'.time().'-'.rand(1000,9999).'.png';
 
-        //  引入字体文件
-        $font = $rootPath.'/./vendor/endroid/qr-code/assets/fonts/noto_sans.otf';
+        
 
         // Create a basic QR code
         $qrCode = new \Endroid\QrCode\QrCode($text);
-        $qrCode->setSize(300);
+        $qrCode->setSize($size);
 
         // Set advanced options
         $qrCode->setWriterByName('png');
-        $qrCode->setMargin(12);
+        $qrCode->setMargin($margin);
         $qrCode->setEncoding('UTF-8');
         $qrCode->setErrorCorrectionLevel(new \Endroid\QrCode\ErrorCorrectionLevel(\Endroid\QrCode\ErrorCorrectionLevel::HIGH));
-        $qrCode->setForegroundColor(['r' => 0, 'g' => 0, 'b' => 0, 'a' => 0]);
-        $qrCode->setBackgroundColor(['r' => 255, 'g' => 255, 'b' => 255, 'a' => 0]);
+        //  底色
+        $qrCode->setForegroundColor(['r' => $foregroundColorArray[0], 'g' => $foregroundColorArray[1], 'b' => $foregroundColorArray[2], 'a' => 0]);
+        //  二维码背景颜色
+        $qrCode->setBackgroundColor(['r' => $backgroundColorArray[0], 'g' => $backgroundColorArray[1], 'b' => $backgroundColorArray[2], 'a' => 0]);
+
         $qrCode->setLabel($bottomText, 16, $font, \Endroid\QrCode\LabelAlignment::CENTER);
         $qrCode->setLogoPath($logoImg);
         $qrCode->setLogoSize(120, 120);
