@@ -5,7 +5,9 @@
 <br><br>（微信自动登录、微信支付、支付宝支付、Web推送、阿里云短信、极光推送。正在开发中）
 <br>
 在线颜色网址：http://tool.oschina.net/commons?type=3
+
 -----------------
+
 # QR Code
 
 *By [endroid](https://endroid.nl/)*
