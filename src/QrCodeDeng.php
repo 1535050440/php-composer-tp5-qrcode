@@ -50,7 +50,7 @@ class QrCodeDeng
 
         $text = !empty($conndition['text'])?$conndition['text']:'myphp.vip';
         $logoImg = !empty($conndition['logo_img'])?$conndition['logo_img']:$logoImg;
-        $bottomText = !empty($conndition['bottom_text'])?$conndition['bottom_text']:'二维码底部';
+        $bottomText = !empty($conndition['bottom_text'])?$conndition['bottom_text']:'二维码[扫一扫]';
         $size = !empty($conndition['size'])?$conndition['size']:'300';
         $margin = !empty($conndition['margin'])?$conndition['margin']:'12';
 
