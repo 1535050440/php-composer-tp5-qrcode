@@ -56,7 +56,7 @@ class QrCodeDeng
 
         //  是否传递二维码
         $foregroundColor = !empty($conndition['foreground_color'])?$conndition['foreground_color']:'0,0,0';
-        $foregroundColorArray = explode(',',$foregroundColorArray);
+        $foregroundColorArray = explode(',',$foregroundColor);
 
         //  是否传递二维码背景颜色
         $backgroundColor = !empty($conndition['background_color'])?$conndition['background_color']:'255,255,255';
