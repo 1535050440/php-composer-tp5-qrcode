@@ -70,7 +70,7 @@ class QrCodeDeng
         $qrCode->setEncoding('UTF-8');
         $qrCode->setErrorCorrectionLevel(new \Endroid\QrCode\ErrorCorrectionLevel(\Endroid\QrCode\ErrorCorrectionLevel::HIGH));
         $qrCode->setForegroundColor(['r' => 0, 'g' => 0, 'b' => 0, 'a' => 0]);
-        $qrCode->setBackgroundColor(['r' => 255, 'g' => 255, 'b' => 255, 'a' => 255]);
+        $qrCode->setBackgroundColor(['r' => 255, 'g' => 255, 'b' => 255, 'a' => 0]);
         $qrCode->setLabel($bottomText, 16, $font, \Endroid\QrCode\LabelAlignment::CENTER);
         $qrCode->setLogoPath($logoImg);
         $qrCode->setLogoSize(120, 120);
