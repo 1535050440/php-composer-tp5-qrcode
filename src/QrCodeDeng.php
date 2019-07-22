@@ -34,6 +34,13 @@ class QrCodeDeng
 
     /**
      * 高级用法
+     * text             文本
+     * logo_img         二维码logo
+     * bottom_text      底部文字
+     * size             图片大小
+     * margin           logo大小
+     * foreground_color 二维码颜色
+     * background_color 二维码背景颜色
      * @return QrCodeResponse
      * @throws \Endroid\QrCode\Exception\InvalidPathException
      * @author:  deng    (2019/7/18 21:37)
@@ -52,7 +59,7 @@ class QrCodeDeng
         $logoImg = !empty($conndition['logo_img'])?$conndition['logo_img']:$logoImg;
         $bottomText = !empty($conndition['bottom_text'])?$conndition['bottom_text']:'二维码[扫一扫]';
         $size = !empty($conndition['size'])?$conndition['size']:'300';
-        $margin = !empty($conndition['margin'])?$conndition['margin']:'12';
+        $margin = !empty($conndition['margin'])?$conndition['margin']:'10';
 
         //  是否传递二维码
         $foregroundColor = !empty($conndition['foreground_color'])?$conndition['foreground_color']:'0,0,0';
