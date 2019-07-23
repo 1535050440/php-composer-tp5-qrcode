@@ -85,6 +85,13 @@ class QrCodeDeng
 
     /**
      * 高级用法
+     * text             文本
+     * logo_img         二维码logo
+     * bottom_text      底部文字
+     * size             图片大小
+     * margin           logo大小
+     * foreground_color 二维码颜色
+     * background_color 二维码背景颜色
      * @return QrCodeResponse
      * @throws \Endroid\QrCode\Exception\InvalidPathException
      * @author:  deng    (2019/7/18 21:37)
